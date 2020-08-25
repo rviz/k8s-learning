@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80 # If target port is not specified, it takes the port value by default
+      port: 80
+      nodePort: 30008 # If node Port is not specified, it is automatically assigned from the port range 30000 - 32767
+  selector: # Selector specify which pod we want to connect, below are labels values for that Pod
+    app: myapp
+    type: front-end

@@ -1,0 +1,15 @@
+# This is will work only with support cloud providers like aws, gcp or azure, which uses native LB
+# Whereas, it won't work in virtual box environment and will have no effect. It will simply work as a NodePort instead
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: 80 
+      port: 80
+      nodePort: 30008 
+  selector: 
+    app: myapp
+    type: front-end
